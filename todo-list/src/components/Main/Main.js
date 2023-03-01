@@ -1,13 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import Spinner from "../Spinner/Spinner";
 const Main = () => {
   const baseUrl = "http://localhost:3030/jsonstore/todos";
 
+  const [todos, setTodos] = useState([]);
+
   useEffect(() => {
     fetch(baseUrl)
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        setTodos(Object.values(data));
+      });
   }, []);
   return (
     <main className="main">
@@ -19,7 +23,7 @@ const Main = () => {
         </div>
 
         <div className="table-wrapper">
-          <Spinner />
+          {/*  <Spinner /> */}
           <table className="table">
             <thead>
               <tr>
@@ -29,13 +33,15 @@ const Main = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="todo is-completed">
-                <td>Give dog a bath</td>
-                <td>Complete</td>
-                <td className="todo-action">
-                  <button className="btn todo-btn">Change status</button>
-                </td>
-              </tr>
+              {todos.map((todo) => (
+                <tr key={todo._id} className="todo is-completed">
+                  <td>{todo.text}</td>
+                  <td>{todo.isCompleted ? "Complete" : "Not complete"}</td>
+                  <td className="todo-action">
+                    <button className="btn todo-btn">Change status</button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
