@@ -13,6 +13,15 @@ const Main = () => {
         setTodos(Object.values(data));
       });
   }, []);
+
+  const handleClick = (id) => {
+    setTodos((state) =>
+      state.map((todo) =>
+        todo._id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+      )
+    );
+  };
+
   return (
     <main className="main">
       <section className="todo-list-container">
@@ -34,11 +43,19 @@ const Main = () => {
             </thead>
             <tbody>
               {todos.map((todo) => (
-                <tr key={todo._id} className="todo is-completed">
+                <tr
+                  key={todo._id}
+                  className={todo.isCompleted ? "todo is-completed" : "todo"}
+                >
                   <td>{todo.text}</td>
                   <td>{todo.isCompleted ? "Complete" : "Not complete"}</td>
                   <td className="todo-action">
-                    <button className="btn todo-btn">Change status</button>
+                    <button
+                      className="btn todo-btn"
+                      onClick={() => handleClick(todo._id)}
+                    >
+                      Change status
+                    </button>
                   </td>
                 </tr>
               ))}
