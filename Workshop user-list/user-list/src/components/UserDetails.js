@@ -1,4 +1,8 @@
 const UserDetails = (props) => {
+  const formatDate = (date) => {
+    const dateFormatted = new Date(date).toLocaleString();
+    return dateFormatted;
+  };
   return (
     <div className="overlay">
       <div className="backdrop"></div>
@@ -58,10 +62,10 @@ const UserDetails = (props) => {
               </p>
 
               <p>
-                Created on: <strong>{props.createdAt}</strong>
+                Created on: <strong>{formatDate(props.createdAt)}</strong>
               </p>
               <p>
-                Modified on: <strong>{props.updatedAt}</strong>
+                Modified on: <strong>{formatDate(props.updatedAt)}</strong>
               </p>
             </div>
           </div>
