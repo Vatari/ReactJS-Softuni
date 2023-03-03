@@ -3,6 +3,7 @@ const User = (props) => {
     const dateFormatted = new Date(date).toLocaleString();
     return dateFormatted;
   };
+
   return (
     <tr>
       <td>
@@ -53,7 +54,11 @@ const User = (props) => {
             ></path>
           </svg>
         </button>
-        <button className="btn info-btn" title="Info">
+        <button
+          className="btn info-btn"
+          title="Info"
+          onClick={() => props.onInfoClick(props._id)}
+        >
           <svg
             aria-hidden="true"
             focusable="false"

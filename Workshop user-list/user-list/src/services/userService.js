@@ -5,3 +5,9 @@ export const getAll = async () => {
   const data = await res.json();
   return data.users;
 };
+
+export const getOne = async (userId) => {
+  const res = await fetch(`${baseUrl}/${userId}`);
+  const result = await res.json();
+  return result.user;
+};
