@@ -26,9 +26,16 @@ const Table = () => {
     }
   };
 
+  const onClose = () => {
+    setSelectedUser(null);
+  };
+
   return (
     <>
-      {selectedUser && users.map((user) => <UserDetails {...selectedUser} />)}
+      {selectedUser &&
+        users.map((user) => (
+          <UserDetails {...selectedUser} onClose={onClose} />
+        ))}
       <div className="table-wrapper">
         {/*  <div className="loading-shade">
           <div className="spinner"></div>

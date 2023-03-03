@@ -3,6 +3,7 @@ const UserDetails = (props) => {
     const dateFormatted = new Date(date).toLocaleString();
     return dateFormatted;
   };
+
   return (
     <div className="overlay">
       <div className="backdrop"></div>
@@ -10,7 +11,7 @@ const UserDetails = (props) => {
         <div className="detail-container">
           <header className="headers">
             <h2>User Detail</h2>
-            <button className="btn close">
+            <button className="btn close" onClick={props.onClose}>
               <svg
                 aria-hidden="true"
                 focusable="false"
