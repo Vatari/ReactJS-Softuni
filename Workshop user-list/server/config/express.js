@@ -1,8 +1,8 @@
-const cors = require('cors');
-const whitelist = ['http://localhost:3000', 'https://user-list-demo-react.herokuapp.com/'];
+const cors = require("cors");
+const whitelist = ["http://localhost:3001", "http://localhost:3000"];
 
 module.exports = (app, express) => {
-  app.use(express.static('public'));
+  app.use(express.static("public"));
   app.use(cors({ origin: whitelist, credentials: true }));
   app.use(express.json());
 
@@ -10,6 +10,8 @@ module.exports = (app, express) => {
     if (res.headerSent) {
       return next(error);
     }
-    res.status(error.code || 500).json({ message: error.message || 'An unknown error occurred!' });
+    res
+      .status(error.code || 500)
+      .json({ message: error.message || "An unknown error occurred!" });
   });
 };

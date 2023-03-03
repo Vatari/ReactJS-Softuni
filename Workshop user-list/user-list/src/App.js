@@ -1,4 +1,5 @@
 import "./App.css";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Search from "./components/Search";
@@ -13,7 +14,7 @@ function App() {
         <section className="card users-container">
           <Search />
           <Table />
-          <button class="btn-add btn">Add new user</button>
+          <button className="btn-add btn">Add new user</button>
           <Pagination />
         </section>
       </main>
