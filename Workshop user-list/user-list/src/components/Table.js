@@ -34,7 +34,11 @@ const Table = () => {
     <>
       {selectedUser &&
         users.map((user) => (
-          <UserDetails {...selectedUser} onClose={onClose} />
+          <UserDetails
+            key={selectedUser._id}
+            {...selectedUser}
+            onClose={onClose}
+          />
         ))}
       <div className="table-wrapper">
         {/*  <div className="loading-shade">
