@@ -62,7 +62,7 @@ const Table = () => {
     setUsers((state) => state.filter((u) => u._id !== userId));
   };
   const onDeleteHandler = () => {
-    onUserDelete(setShowDeleteModal);
+    onUserDelete(showDeleteModal);
     onClose();
   };
   return (
