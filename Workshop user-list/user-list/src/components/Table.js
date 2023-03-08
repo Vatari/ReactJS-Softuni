@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import * as userService from "../services/userService";
+import DeleteModal from "./DeleteModal";
 import User from "./User";
 import UserCreate from "./UserCreate";
 import UserDetails from "./UserDetails";
@@ -20,7 +21,9 @@ const Table = () => {
   }, []);
 
   const [selectedUser, setSelectedUser] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showAddUser, setShowAddUSer] = useState(false);
+
   const onInfoClick = async (userId) => {
     const user = await userService.getOne(userId);
     if (user) {
@@ -31,6 +34,7 @@ const Table = () => {
   const onClose = () => {
     setSelectedUser(null);
     setShowAddUSer(false);
+    setShowDeleteModal(null);
   };
   const onUserAddClick = () => {
     setShowAddUSer(true);
@@ -48,6 +52,19 @@ const Table = () => {
     onUserCreateSubmit(e);
     setShowAddUSer(false);
   };
+
+  const onDeleteCLick = async (userId) => {
+    setShowDeleteModal(userId);
+  };
+
+  const onUserDelete = async (userId) => {
+    await userService.deleteUser(userId);
+    setUsers((state) => state.filter((u) => u._id !== userId));
+  };
+  const onDeleteHandler = () => {
+    onUserDelete(setShowDeleteModal);
+    onClose();
+  };
   return (
     <>
       {selectedUser &&
@@ -63,6 +80,10 @@ const Table = () => {
           onClose={onClose}
           onUserCreateSubmit={onUserCreateSubmitHandler}
         />
+      )}
+
+      {showDeleteModal && (
+        <DeleteModal onClose={onClose} onDelete={onDeleteHandler} />
       )}
       <div className="table-wrapper">
         {/*  <div className="loading-shade">
@@ -225,7 +246,12 @@ const Table = () => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <User key={user._id} {...user} onInfoClick={onInfoClick} />
+              <User
+                key={user._id}
+                {...user}
+                onInfoClick={onInfoClick}
+                onDeleteCLick={onDeleteCLick}
+              />
             ))}
           </tbody>
         </table>

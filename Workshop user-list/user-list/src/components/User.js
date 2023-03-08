@@ -37,7 +37,11 @@ const User = (props) => {
             ></path>
           </svg>
         </button>
-        <button className="btn delete-btn" title="Delete">
+        <button
+          className="btn delete-btn"
+          title="Delete"
+          onClick={() => props.onDeleteCLick(props._id)}
+        >
           <svg
             aria-hidden="true"
             focusable="false"
