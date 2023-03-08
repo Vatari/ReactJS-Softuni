@@ -11,3 +11,25 @@ export const getOne = async (userId) => {
   const result = await res.json();
   return result.user;
 };
+
+export const create = async (userData) => {
+  const { country, city, streetNumber, street, ...data } = userData;
+
+  data.address = {
+    country,
+    city,
+    street,
+    streetNumber,
+  };
+
+  const res = await fetch(baseUrl, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  const result = await res.json();
+  return result;
+};

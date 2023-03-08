@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import * as userService from "../services/userService";
 import User from "./User";
+import UserCreate from "./UserCreate";
 import UserDetails from "./UserDetails";
 
 const Table = () => {
@@ -19,6 +20,7 @@ const Table = () => {
   }, []);
 
   const [selectedUser, setSelectedUser] = useState(null);
+  const [showAddUser, setShowAddUSer] = useState(false);
   const onInfoClick = async (userId) => {
     const user = await userService.getOne(userId);
     if (user) {
@@ -28,8 +30,24 @@ const Table = () => {
 
   const onClose = () => {
     setSelectedUser(null);
+    setShowAddUSer(false);
+  };
+  const onUserAddClick = () => {
+    setShowAddUSer(true);
+  };
+  const onUserCreateSubmit = async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const userData = Object.fromEntries(data);
+    const newUser = await userService.create(userData);
+
+    setUsers((state) => [...state, newUser]);
   };
 
+  const onUserCreateSubmitHandler = (e) => {
+    onUserCreateSubmit(e);
+    setShowAddUSer(false);
+  };
   return (
     <>
       {selectedUser &&
@@ -40,6 +58,12 @@ const Table = () => {
             onClose={onClose}
           />
         ))}
+      {showAddUser && (
+        <UserCreate
+          onClose={onClose}
+          onUserCreateSubmit={onUserCreateSubmitHandler}
+        />
+      )}
       <div className="table-wrapper">
         {/*  <div className="loading-shade">
           <div className="spinner"></div>
@@ -206,6 +230,9 @@ const Table = () => {
           </tbody>
         </table>
       </div>
+      <button className="btn-add btn" onClick={onUserAddClick}>
+        Add new user
+      </button>
     </>
   );
 };
