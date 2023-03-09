@@ -20,7 +20,11 @@ const User = (props) => {
       <td>{formatDate(props.createdAt)}</td>
 
       <td className="actions">
-        <button className="btn edit-btn" title="Edit">
+        <button
+          className="btn edit-btn"
+          title="Edit"
+          onClick={() => props.onEditClick(props._id)}
+        >
           <svg
             aria-hidden="true"
             focusable="false"

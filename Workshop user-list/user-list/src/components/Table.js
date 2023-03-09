@@ -21,8 +21,9 @@ const Table = () => {
   }, []);
 
   const [selectedUser, setSelectedUser] = useState(null);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [showAddUser, setShowAddUSer] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(null);
+  const [showAddUser, setShowAddUSer] = useState(null);
+  const [showEditUser, setShowEditUser] = useState(false);
 
   const onInfoClick = async (userId) => {
     const user = await userService.getOne(userId);
@@ -35,6 +36,7 @@ const Table = () => {
     setSelectedUser(null);
     setShowAddUSer(false);
     setShowDeleteModal(null);
+    setShowEditUser(null);
   };
   const onUserAddClick = () => {
     setShowAddUSer(true);
@@ -46,6 +48,10 @@ const Table = () => {
     const newUser = await userService.create(userData);
 
     setUsers((state) => [...state, newUser]);
+  };
+
+  const onUserUpdateSubmit = async (e) => {
+    e.preventDefault();
   };
 
   const onUserCreateSubmitHandler = (e) => {
@@ -64,6 +70,11 @@ const Table = () => {
   const onDeleteHandler = () => {
     onUserDelete(showDeleteModal);
     onClose();
+  };
+
+  const onEditClick = async (userId) => {
+    const user = await userService.getOne(userId);
+    setShowEditUser(user);
   };
   return (
     <>
@@ -84,6 +95,14 @@ const Table = () => {
 
       {showDeleteModal && (
         <DeleteModal onClose={onClose} onDelete={onDeleteHandler} />
+      )}
+
+      {showEditUser && (
+        <UserCreate
+          user={showEditUser}
+          onClose={onClose}
+          onUserCreateSubmit={onUserUpdateSubmit}
+        />
       )}
       <div className="table-wrapper">
         {/*  <div className="loading-shade">
@@ -251,6 +270,7 @@ const Table = () => {
                 {...user}
                 onInfoClick={onInfoClick}
                 onDeleteCLick={onDeleteCLick}
+                onEditClick={onEditClick}
               />
             ))}
           </tbody>
