@@ -50,13 +50,23 @@ const Table = () => {
     setUsers((state) => [...state, newUser]);
   };
 
-  const onUserUpdateSubmit = async (e) => {
+  const onUserUpdateSubmit = async (e, userId) => {
     e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const userData = Object.fromEntries(data);
+    const updatedUser = await userService.update(userId, userData);
+    setUsers((state) => state.map((x) => (x.id === userId ? updatedUser : x)));
   };
 
   const onUserCreateSubmitHandler = (e) => {
     onUserCreateSubmit(e);
     setShowAddUSer(false);
+  };
+
+  const onUserUpdateSubmitHandler = (e, userId) => {
+    onUserUpdateSubmit(e, userId);
+    setShowEditUser(null);
+    //onClose()
   };
 
   const onDeleteCLick = async (userId) => {
@@ -101,7 +111,7 @@ const Table = () => {
         <UserCreate
           user={showEditUser}
           onClose={onClose}
-          onUserCreateSubmit={onUserUpdateSubmit}
+          onUserCreateSubmit={onUserUpdateSubmitHandler}
         />
       )}
       <div className="table-wrapper">

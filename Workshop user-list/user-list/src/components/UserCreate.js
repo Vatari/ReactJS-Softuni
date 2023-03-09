@@ -24,7 +24,7 @@ const UserCreate = ({ user, onClose, onUserCreateSubmit }) => {
               </svg>
             </button>
           </header>
-          <form onSubmit={onUserCreateSubmit}>
+          <form onSubmit={(e) => onUserCreateSubmit(e, user?._id)}>
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="firstName">First name</label>

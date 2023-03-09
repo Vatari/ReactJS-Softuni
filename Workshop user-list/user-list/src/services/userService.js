@@ -42,3 +42,23 @@ export const deleteUser = async (userId) => {
   const result = await res.json();
   return result;
 };
+
+export const update = async (userId, userData) => {
+  const { country, city, streetNumber, street, ...data } = userData;
+
+  userData.address = {
+    country,
+    city,
+    street,
+    streetNumber,
+  };
+  const res = await fetch(`${baseUrl}/${userId}`, {
+    method: "PUT",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(userData),
+  });
+  const result = await res.json();
+  return result.user;
+};
