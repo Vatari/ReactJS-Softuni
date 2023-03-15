@@ -4,6 +4,7 @@ import DeleteModal from "./DeleteModal";
 import User from "./User";
 import UserCreate from "./UserCreate";
 import UserDetails from "./UserDetails";
+
 import * as userService from "../services/userService";
 
 const UserList = () => {
