@@ -6,7 +6,7 @@ import User from "./User";
 import UserCreate from "./UserCreate";
 import UserDetails from "./UserDetails";
 
-const Table = () => {
+const UserList = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -46,6 +46,7 @@ const Table = () => {
     const data = new FormData(e.currentTarget);
     const userData = Object.fromEntries(data);
     const newUser = await userService.create(userData);
+    console.log(newUser);
 
     setUsers((state) => [...state, newUser]);
   };
@@ -293,4 +294,4 @@ const Table = () => {
   );
 };
 
-export default Table;
+export default UserList;
