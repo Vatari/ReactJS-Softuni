@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
-import * as userService from "../services/userService";
 import DeleteModal from "./DeleteModal";
 import User from "./User";
 import UserCreate from "./UserCreate";
 import UserDetails from "./UserDetails";
+import * as userService from "../services/userService";
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -18,7 +18,7 @@ const UserList = () => {
       .catch((err) => {
         alert(err);
       });
-  }, []);
+  }, [users]);
 
   const [selectedUser, setSelectedUser] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(null);
@@ -46,7 +46,6 @@ const UserList = () => {
     const data = new FormData(e.currentTarget);
     const userData = Object.fromEntries(data);
     const newUser = await userService.create(userData);
-    console.log(newUser);
 
     setUsers((state) => [...state, newUser]);
   };
@@ -99,8 +98,8 @@ const UserList = () => {
         ))}
       {showAddUser && (
         <UserCreate
-          onClose={onClose}
           onUserCreateSubmit={onUserCreateSubmitHandler}
+          onClose={onClose}
         />
       )}
 
@@ -275,10 +274,10 @@ const UserList = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {users.map((u) => (
               <User
-                key={user._id}
-                {...user}
+                key={u._id}
+                {...u}
                 onInfoClick={onInfoClick}
                 onDeleteCLick={onDeleteCLick}
                 onEditClick={onEditClick}
