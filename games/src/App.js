@@ -10,19 +10,21 @@ import Register from "./components/Register";
 import Create from "./components/Create";
 
 function App() {
-  const baseUrl = "http://localhost:3030";
+  const baseUrl = "http://10.10.101.22:3030";
   const [games, setGames] = useState([]);
 
-  /*   useEffect = () => {
-    fetch(`${baseUrl}\games`).then((res) => console.log(res.json()));
-  }; */
+  useEffect(() => {
+    fetch(`${baseUrl}/jsonstore/games`)
+      .then((res) => res.json())
+      .then((result) => setGames(Object.values(result)));
+  }, []);
 
   return (
     <div id="box">
       <Header />
       <main id="main-content">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home games={games} />} />
           <Route path="/catalog" element={<Catalogue />} />
           <Route path="/:id" element={<Details />} />
           <Route path="/login" element={<Login />} />

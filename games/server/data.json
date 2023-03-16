@@ -1,0 +1,20 @@
+{
+    "4bd78f4e-f082-4fb0-9b3f-02b785da7755": {
+        "title": "Diablo 4",
+        "genre": "role-rpg",
+        "imageUrl": "https://e7.pngegg.com/pngimages/383/171/png-clipart-diablo-iii-reaper-of-souls-tyrael-playstation-4-video-game-diablo-miscellaneous-symmetry-thumbnail.png",
+        "_id": "4bd78f4e-f082-4fb0-9b3f-02b785da7755"
+    },
+    "0025b41d-3ddd-4436-a26e-38ffb7852a3f": {
+        "title": "World of Warcraft",
+        "genre": "MMORPG",
+        "imageUrl": "https://e7.pngegg.com/pngimages/531/372/png-clipart-world-of-warcraft-emblem-world-of-warcraft-legion-world-of-warcraft-wrath-of-the-lich-king-warcraft-death-knight-world-of-warcraft-mists-of-pandaria-world-of-warcraft-video-thumbnail.png",
+        "_id": "0025b41d-3ddd-4436-a26e-38ffb7852a3f"
+    },
+    "4ab01ba8-fe5d-4fba-ab04-15a56cd0fed2": {
+        "title": "EVE Online",
+        "genre": "Sci-Fi MMORPG",
+        "imageUrl": "https://e1.pngegg.com/pngimages/586/558/png-clipart-eve-online-v2-ico-format-eve2b-icon-thumbnail.png",
+        "_id": "4ab01ba8-fe5d-4fba-ab04-15a56cd0fed2"
+    }
+}
