@@ -6,7 +6,7 @@ const Create = () => {
       <form id="create">
         <div className="container">
           <h1>Create Game</h1>
-          <label HtmlFor="leg-title">Legendary title:</label>
+          <label htmlFor="leg-title">Legendary title:</label>
           <input
             type="text"
             id="title"
@@ -14,7 +14,7 @@ const Create = () => {
             placeholder="Enter game title..."
           />
 
-          <label HtmlFor="category">Category:</label>
+          <label htmlFor="category">Category:</label>
           <input
             type="text"
             id="category"
@@ -22,7 +22,7 @@ const Create = () => {
             placeholder="Enter game category..."
           />
 
-          <label HtmlFor="levels">MaxLevel:</label>
+          <label htmlFor="levels">MaxLevel:</label>
           <input
             type="number"
             id="maxLevel"
@@ -31,7 +31,7 @@ const Create = () => {
             placeholder="1"
           />
 
-          <label HtmlFor="game-img">Image:</label>
+          <label htmlFor="game-img">Image:</label>
           <input
             type="text"
             id="imageUrl"
@@ -39,7 +39,7 @@ const Create = () => {
             placeholder="Upload a photo..."
           />
 
-          <label HtmlFor="summary">Summary:</label>
+          <label htmlFor="summary">Summary:</label>
           <textarea name="summary" id="summary"></textarea>
           <input className="btn submit" type="submit" value="Create Game" />
         </div>
