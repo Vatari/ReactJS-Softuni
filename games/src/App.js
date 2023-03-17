@@ -25,7 +25,7 @@ function App() {
       <main id="main-content">
         <Routes>
           <Route path="/" element={<Home games={games} />} />
-          <Route path="/catalog" element={<Catalogue />} />
+          <Route path="/catalog" element={<Catalogue games={games} />} />
           <Route path="/:id" element={<Details />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
